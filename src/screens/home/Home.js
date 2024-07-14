@@ -1,58 +1,37 @@
-import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, FlatList, Dimensions, Image } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
-import Button from '../../components/Button'
-import { useNavigate } from "react-router-dom";
-import { colors, fontSize } from "../../theme";
-import { UserContext } from '../../contexts/UserContext'
+import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
+import { db } from "../../firebase";
+import RenderImage from "./RenderImage";
 
 export default function Home() {
-  const navigate = useNavigate()
-  const { setUser } = useContext(UserContext)
+  const [images, setImages] = useState([])
 
-  const onButtonPress = () => {
-    navigate('/detail')
-  }
-
-  const onLogoutPress = () => {
-    setUser('')
-  }
+  useEffect(() => {
+    const fetchImages = async() => {
+      const imagesCollectionRef = collection(db, "images")
+      const q = query(imagesCollectionRef, orderBy("createdAt", "desc"), limit(500))
+      const querySnapshot = await getDocs(q)
+      const items = querySnapshot.docs.map((doc) => doc.data())
+      setImages(items)
+    }
+    fetchImages()
+  }, [])
 
   return (
     <ScreenTemplate>
-      <View style={styles.container}>
-        <Text style={styles.label}>Home</Text>
-        <View style={{width: '50%'}}>
-          <Button
-            label='Go Detail'
-            onPress={onButtonPress}
-            color={colors.lightPurple}
-            desable={false}
-            labelColor={colors.white}
-          />
-          <View style={{paddingVertical: 10}} />
-          <Button
-            label='Logout'
-            onPress={onLogoutPress}
-            color={colors.aquamarine}
-            desable={false}
-            labelColor={colors.black}
-          />
-        </View>
-      </View>
+      <FlatList 
+        data={images}
+        keyExtractor={(item, index) => item.id}
+        numColumns={5}
+        renderItem={({item}) => {
+          return <RenderImage item={item} />
+        }}
+      />
     </ScreenTemplate>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.white
-  },
-  label: {
-    fontSize: fontSize.xxLarge,
-    fontWeight: '500'
-  }
 })
