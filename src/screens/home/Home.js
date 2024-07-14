@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     const fetchImages = async() => {
       const imagesCollectionRef = collection(db, "images")
-      const q = query(imagesCollectionRef, orderBy("createdAt", "desc"), limit(500))
+      const q = query(imagesCollectionRef, orderBy("createdAt", "desc"), limit(50))
       const querySnapshot = await getDocs(q)
       const items = querySnapshot.docs.map((doc) => doc.data())
       setImages(items)
