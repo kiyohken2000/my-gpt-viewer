@@ -30,7 +30,8 @@ export default function DetaileView(props) {
               resizeMode='cover'
               style={{
                 height: width * 0.9,
-                width: width * 0.9
+                width: width * 0.9,
+                alignSelf: 'center',
               }}
             />
             <View style={{flex: 1}}>
@@ -74,9 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
-    flex: 1,
     backgroundColor: colors.white,
-    alignItems: 'center'
   },
   linkText: {
     color: colors.purple,

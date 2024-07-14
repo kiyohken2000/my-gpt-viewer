@@ -16,10 +16,10 @@ export default function Element(props) {
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 10,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   label: {
-    fontSize: fontSize.xxLarge
+    fontSize: fontSize.xxLarge,
   },
   content: {
     fontSize: fontSize.large
