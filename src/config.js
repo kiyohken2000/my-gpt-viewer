@@ -5,4 +5,9 @@ const config = {
 
 const basename = ''
 
-export { config, basename }
+const storeLinks = {
+  appStore: 'https://apps.apple.com/jp/app/id6474574029',
+  googlePlay: 'https://play.google.com/store/apps/details?id=net.votepurchase.mygpt'
+}
+
+export { config, basename, storeLinks }

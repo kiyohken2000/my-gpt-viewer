@@ -1,10 +1,14 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
+import Footer from "./Footer/Footer";
 
 export default function ScreenTemplate(props) {
   return (
     <View style={styles.container}>
-      {props.children}
+      <View style={{flex: 1}}>
+        {props.children}
+      </View>
+      <Footer/>
     </View>
   )
 }
