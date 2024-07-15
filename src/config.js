@@ -7,7 +7,8 @@ const basename = ''
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
-  googlePlay: 'https://play.google.com/store/apps/details?id=net.votepurchase.mygpt'
+  googlePlay: 'https://play.google.com/store/apps/details?id=net.votepurchase.mygpt',
+  bmc: 'https://buymeacoffee.com/votepurchase',
 }
 
 export { config, basename, storeLinks }
