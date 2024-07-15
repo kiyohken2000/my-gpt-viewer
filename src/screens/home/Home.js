@@ -44,7 +44,7 @@ export default function Home() {
       <FlatList 
         data={images}
         keyExtractor={(item, index) => item.id}
-        numColumns={5}
+        numColumns={3}
         renderItem={({item}) => {
           return <RenderImage item={item} />
         }}
