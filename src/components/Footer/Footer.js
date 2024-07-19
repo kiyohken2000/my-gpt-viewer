@@ -38,7 +38,7 @@ export default function Footer() {
           <Image
             source={require('../../assets/images/bmc-button.png')}
             resizeMode='contain'
-            style={styles.image2}
+            style={styles.image3}
           />
         </TouchableOpacity>
         <View style={{paddingHorizontal: 10}} />
@@ -48,7 +48,7 @@ export default function Footer() {
           <Image
             source={require('../../assets/images/suno.png')}
             resizeMode='contain'
-            style={styles.image2}
+            style={styles.image}
           />
         </TouchableOpacity>
       </View>
@@ -69,5 +69,9 @@ const styles = StyleSheet.create({
   image2: {
     height: 70,
     width: 180
-  }
+  },
+  image3: {
+    height: 70,
+    width: 170
+  },
 })

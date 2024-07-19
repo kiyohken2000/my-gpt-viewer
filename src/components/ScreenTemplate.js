@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import Footer from "./Footer/Footer";
 
 export default function ScreenTemplate(props) {
   return (
@@ -8,7 +7,6 @@ export default function ScreenTemplate(props) {
       <View style={{flex: 1}}>
         {props.children}
       </View>
-      <Footer/>
     </View>
   )
 }
