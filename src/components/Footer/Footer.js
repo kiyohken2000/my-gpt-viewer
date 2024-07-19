@@ -31,15 +31,27 @@ export default function Footer() {
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={() => onLinkPress({url: storeLinks.bmc})}
-      >
-        <Image
-          source={require('../../assets/images/bmc-button.png')}
-          resizeMode='contain'
-          style={styles.image2}
-        />
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => onLinkPress({url: storeLinks.bmc})}
+        >
+          <Image
+            source={require('../../assets/images/bmc-button.png')}
+            resizeMode='contain'
+            style={styles.image2}
+          />
+        </TouchableOpacity>
+        <View style={{paddingHorizontal: 10}} />
+        <TouchableOpacity
+          onPress={() => onLinkPress({url: storeLinks.suno})}
+        >
+          <Image
+            source={require('../../assets/images/suno.png')}
+            resizeMode='contain'
+            style={styles.image2}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
