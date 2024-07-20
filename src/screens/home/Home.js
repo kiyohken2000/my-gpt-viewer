@@ -97,11 +97,12 @@ export default function Home() {
         open={open}
         onDismiss={() => setOpen(false)}
         snapPoints={({ maxHeight }) => [
-          maxHeight * 0.95    // 開いているときは90%
+          maxHeight * 0.95
         ]}
         expandOnContentDrag={false}
         blocking={false}
         scrollLocking={false}
+        header={false}
       >
         <BottomSheetContent
           tags={tags}
@@ -109,6 +110,7 @@ export default function Home() {
           myPrompt={myPrompt}
           clearTag={clearTag}
           copyToClipboard={copyToClipboard}
+          requestClose={() => setOpen(false)}
         />
         <Toaster />
       </BottomSheet>

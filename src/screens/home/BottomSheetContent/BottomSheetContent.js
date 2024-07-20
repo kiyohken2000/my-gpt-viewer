@@ -3,13 +3,17 @@ import { View, StyleSheet, Text, useWindowDimensions, FlatList, TouchableOpacity
 import Footer from "../../../components/Footer/Footer";
 import { fontSize, colors } from "../../../theme";
 import Button from "../../../components/Button";
+import BottomSheetHeader from "./BottomSheetHeader";
 
 export default function BottomSheetContent(props) {
-  const { tags, addTag, myPrompt, clearTag, copyToClipboard } = props
+  const { tags, addTag, myPrompt, clearTag, copyToClipboard, requestClose } = props
   const { height } = useWindowDimensions()
 
   return (
     <View style={[styles.container, { height: height * 0.91}]}>
+      <BottomSheetHeader
+        onPress={requestClose}
+      />
       <View style={styles.innerContainer}>
         <View style={{flex: 2}}>
           <FlatList

@@ -4,7 +4,7 @@ const getTags = ({images}) => {
     const promptArray = prompt.split(',').map(item => item.trim());
     return promptArray
   })
-  const promptArray = tagsArray.flat()
+  const promptArray = tagsArray.flat().filter(v => v)
   const uniquePromptArray = [...new Set(promptArray)];
   return uniquePromptArray
 }
