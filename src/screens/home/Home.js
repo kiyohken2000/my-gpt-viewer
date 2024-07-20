@@ -11,6 +11,8 @@ import BottomSheetContent from "./BottomSheetContent/BottomSheetContent";
 import { getTags } from "./functions";
 import toast, { Toaster } from 'react-hot-toast';
 
+const imageCadence = 16
+
 export default function Home() {
   const [images, setImages] = useState([])
   const [lastDoc, setLastDoc] = useState(null)
@@ -24,13 +26,13 @@ export default function Home() {
     if (loading || allLoaded) return
     setLoading(true)
     const imagesCollectionRef = collection(db, "images")
-    let q = query(imagesCollectionRef, orderBy("createdAt", "desc"), limit(15))
+    let q = query(imagesCollectionRef, orderBy("createdAt", "desc"), limit(imageCadence))
     if (lastVisible) {
-      q = query(imagesCollectionRef, orderBy("createdAt", "desc"), startAfter(lastVisible), limit(15))
+      q = query(imagesCollectionRef, orderBy("createdAt", "desc"), startAfter(lastVisible), limit(imageCadence))
     }
     const querySnapshot = await getDocs(q)
     const items = querySnapshot.docs.map((doc) => doc.data())
-    if (items.length < 15) {
+    if (items.length < imageCadence) {
       setAllLoaded(true)
     }
     setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1])

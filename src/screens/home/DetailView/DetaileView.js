@@ -50,21 +50,27 @@ export default function DetaileView(props) {
             </View>
           </View>
         </ScrollView>
-        <Button
-          label='アップローダで開く'
-          color={colors.purple}
-          labelColor={colors.white}
-          onPress={onLinkPress}
-          disable={false}
-        />
-        <View style={{paddingVertical: 5}} />
-        <Button
-          label='閉じる'
-          color={colors.darkPurple}
-          labelColor={colors.white}
-          onPress={onClose}
-          disable={false}
-        />
+        <View style={{flexDirection: 'row', paddingBottom: 10}}>
+          <View style={{flex: 1}}>
+            <Button
+              label='アップローダで開く'
+              color={colors.purple}
+              labelColor={colors.white}
+              onPress={onLinkPress}
+              disable={false}
+            />
+          </View>
+          <View style={{paddingHorizontal: 10}} />
+          <View style={{flex: 1}}>
+            <Button
+              label='閉じる'
+              color={colors.darkPurple}
+              labelColor={colors.white}
+              onPress={onClose}
+              disable={false}
+            />
+          </View>
+        </View>
       </View>
     </Modal>
   )
