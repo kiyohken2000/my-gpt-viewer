@@ -11,7 +11,7 @@ import BottomSheetContent from "./BottomSheetContent/BottomSheetContent";
 import { getTags } from "./functions";
 import toast, { Toaster } from 'react-hot-toast';
 
-const imageCadence = 16
+const imageCadence = 18
 
 export default function Home() {
   const [images, setImages] = useState([])
