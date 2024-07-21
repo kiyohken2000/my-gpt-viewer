@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { TouchableOpacity, Image, Dimensions, StyleSheet } from "react-native";
-import DetaileView from "./DetailView/DetaileView";
 
 const { width } = Dimensions.get('window')
 
 export default function RenderImage(props) {
-  const { item } = props
-  const [visible, setVisible] = useState(false)
+  const { item, onPress } = props
  
   return (
     <>
     <TouchableOpacity
-      onPress={() => setVisible(!visible)}
+      onPress={onPress}
     >
       <Image
         source={{ uri: item.thumb }}
         style={styles.imageStyle}
       />
     </TouchableOpacity>
-    <DetaileView
-      item={item}
-      visible={visible}
-      onClose={() => setVisible(false)}
-    />
     </>
   )
 }

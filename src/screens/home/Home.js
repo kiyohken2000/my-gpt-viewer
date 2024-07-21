@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, StyleSheet, FlatList } from "react-native";
+import { Text, FlatList } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
 import { collection, getDocs, query, limit, orderBy, startAfter } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -10,17 +10,22 @@ import OpenButton from "./BottomSheetContent/OpenButton";
 import BottomSheetContent from "./BottomSheetContent/BottomSheetContent";
 import { getTags } from "./functions";
 import toast, { Toaster } from 'react-hot-toast';
+import DetaileView from "./DetailView/DetaileView";
 
 const imageCadence = 18
 
 export default function Home() {
   const [images, setImages] = useState([])
+  const [lastImage, setLastImage] = useState('')
   const [lastDoc, setLastDoc] = useState(null)
   const [loading, setLoading] = useState(false)
   const [allLoaded, setAllLoaded] = useState(false)
   const [open, setOpen] = useState(false)
   const [tags, setTags] = useState([])
   const [myPrompt, setMyPrompt] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
+  const [currentImage, setCurrentImage] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(null)
 
   const fetchImages = async(lastVisible = null) => {
     if (loading || allLoaded) return
@@ -77,20 +82,55 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    const _currentImage = images[currentIndex]
+    if(!_currentImage) return
+    setCurrentImage(_currentImage)
+    setModalVisible(true)
+  }, [currentIndex])
+
+  useEffect(() => {
+    const _lastImage = images.slice(-1)[0]
+    if(!_lastImage) return
+    setLastImage(_lastImage)
+  }, [images])
+
+  const onImagePress = ({index}) => {
+    setCurrentIndex(index)
+  }
+
+  const requestClose = () => {
+    setCurrentImage('')
+    setCurrentIndex(null)
+    setModalVisible(false)
+  }
+
   return (
     <ScreenTemplate>
       <FlatList 
         data={images}
         keyExtractor={(item, index) => item.id}
         numColumns={3}
-        renderItem={({item}) => {
-          return <RenderImage item={item} />
-        }}
+        renderItem={({item, index}) => {
+          return (
+            <RenderImage 
+              item={item} 
+              onPress={() => onImagePress({index})}
+            />
+        )}}
         onEndReached={loadMore}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() => (
           loading ? <Text>Loading...</Text> : null
         )}
+      />
+      <DetaileView
+        item={currentImage}
+        visible={modalVisible}
+        requestClose={requestClose}
+        currentIndex={currentIndex}
+        lastImage={lastImage}
+        setCurrentIndex={setCurrentIndex}
       />
       <OpenButton onPress={() => setOpen(true)} />
       <BottomSheet
@@ -117,6 +157,3 @@ export default function Home() {
     </ScreenTemplate>
   )
 }
-
-const styles = StyleSheet.create({
-})
