@@ -8,7 +8,7 @@ import ArrowButton from "./ArrowButton";
 const { height, width } = Dimensions.get('window')
 
 export default function DetaileView(props) {
-  const { item, visible, requestClose, currentIndex, lastImage, setCurrentIndex } = props
+  const { item, visible, requestClose, currentIndex, lastImage, setCurrentIndex, searchPrompt } = props
   const { imageUrl, modelName, negativePrompt, prompt, viewerUrl, thumb } = item
   const isLast = lastImage.id === item.id
   
@@ -64,14 +64,17 @@ export default function DetaileView(props) {
               <Element
                 label='モデル'
                 content={modelName}
+                searchPrompt=''
               />
               <Element
                 label='プロンプト'
                 content={prompt}
+                searchPrompt={searchPrompt}
               />
               <Element
                 label='ネガティブプロンプト'
                 content={negativePrompt}
+                searchPrompt=''
               />
             </View>
           </View>

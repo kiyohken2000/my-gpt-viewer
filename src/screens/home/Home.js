@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Text, FlatList } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+import { Text, FlatList, View } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
-import { collection, getDocs, query, limit, orderBy, startAfter } from "firebase/firestore";
+import { collection, getDocs, query, limit, orderBy, startAfter, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import RenderImage from "./RenderImage";
 import { BottomSheet } from 'react-spring-bottom-sheet'
@@ -11,10 +11,20 @@ import BottomSheetContent from "./BottomSheetContent/BottomSheetContent";
 import { getTags } from "./functions";
 import toast, { Toaster } from 'react-hot-toast';
 import DetaileView from "./DetailView/DetaileView";
+import SearchArea from "./SearchArea";
+import algoliasearch from 'algoliasearch/lite';
+import { algoliaKey } from "../../apiKey";
+
+const searchClient = algoliasearch(
+  algoliaKey.appID,
+  algoliaKey.secret
+);
+const index = searchClient.initIndex('image_firestore');
 
 const imageCadence = 18
 
 export default function Home() {
+  const flatListRef = useRef(null);
   const [images, setImages] = useState([])
   const [lastImage, setLastImage] = useState('')
   const [lastDoc, setLastDoc] = useState(null)
@@ -26,28 +36,63 @@ export default function Home() {
   const [modalVisible, setModalVisible] = useState(false)
   const [currentImage, setCurrentImage] = useState('')
   const [currentIndex, setCurrentIndex] = useState(null)
+  const [searchPrompt, setSearchPrompt] = useState('')
 
-  const fetchImages = async(lastVisible = null) => {
-    if (loading || allLoaded) return
-    setLoading(true)
-    const imagesCollectionRef = collection(db, "images")
-    let q = query(imagesCollectionRef, orderBy("createdAt", "desc"), limit(imageCadence))
-    if (lastVisible) {
-      q = query(imagesCollectionRef, orderBy("createdAt", "desc"), startAfter(lastVisible), limit(imageCadence))
+  const scrollToTop = () => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToOffset({ offset: 0, animated: true });
     }
-    const querySnapshot = await getDocs(q)
-    const items = querySnapshot.docs.map((doc) => doc.data())
-    if (items.length < imageCadence) {
-      setAllLoaded(true)
+  };
+
+  const fetchImages = async (page = 0, prompt = "") => {
+  if (loading || allLoaded) return;
+  setLoading(true);
+
+  try {
+    let searchParams = {
+      hitsPerPage: imageCadence,
+      page: page,
+      attributesToRetrieve: ['id', 'imageUrl', 'modelName', 'negativePrompt', 'prompt', 'thumb', 'viewerUrl'],
+      attributesToHighlight: ['prompt'],
+      highlightPreTag: '<em>',
+      highlightPostTag: '</em>',
+    };
+
+    if (prompt) {
+      searchParams.restrictSearchableAttributes = ['prompt'];
     }
-    setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1])
-    setImages(prevImages => [...prevImages, ...items])
-    setLoading(false)
+
+    const { hits, page: currentPage, nbPages } = await index.search(prompt, {
+      ...searchParams,
+      cacheable: false,
+    });
+
+    const items = hits.map(hit => ({
+      ...hit,
+      id: hit.objectID,
+      highlightedPrompt: hit._highlightResult?.prompt?.value
+    }));
+
+    if (currentPage + 1 >= nbPages) {
+      setAllLoaded(true);
+    }
+
+    setLastDoc(currentPage);
+    setImages(prevImages => page === 0 ? items : [...prevImages, ...items]);
+  } catch (error) {
+    console.error('Error fetching images:', error);
+  } finally {
+    setLoading(false);
   }
+};
 
   useEffect(() => {
-    fetchImages()
-  }, [])
+    setAllLoaded(false);
+    setLastDoc(-1);
+    fetchImages(0, searchPrompt).then(() => {
+      scrollToTop();
+    });
+  }, [searchPrompt])
 
   useEffect(() => {
     const tags = getTags({images})
@@ -56,7 +101,7 @@ export default function Home() {
 
   const loadMore = () => {
     if (!allLoaded) {
-      fetchImages(lastDoc)
+      fetchImages(lastDoc + 1, searchPrompt);
     }
   }
 
@@ -107,7 +152,16 @@ export default function Home() {
 
   return (
     <ScreenTemplate>
-      <FlatList 
+      <SearchArea
+        searchPrompt={searchPrompt}
+        setSearchPrompt={setSearchPrompt}
+        onClear={() => {
+          setAllLoaded(false)
+          setSearchPrompt('')
+        }}
+      />
+      <FlatList
+        ref={flatListRef}
         data={images}
         keyExtractor={(item, index) => item.id}
         numColumns={3}
@@ -131,6 +185,7 @@ export default function Home() {
         currentIndex={currentIndex}
         lastImage={lastImage}
         setCurrentIndex={setCurrentIndex}
+        searchPrompt={searchPrompt}
       />
       <OpenButton onPress={() => setOpen(true)} />
       <BottomSheet
