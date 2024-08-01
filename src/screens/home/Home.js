@@ -14,6 +14,7 @@ import DetaileView from "./DetailView/DetaileView";
 import SearchArea from "./SearchArea";
 import algoliasearch from 'algoliasearch/lite';
 import { algoliaKey } from "../../apiKey";
+import ReactGA from "react-ga4";
 
 const searchClient = algoliasearch(
   algoliaKey.appID,
@@ -24,6 +25,7 @@ const index = searchClient.initIndex('image_firestore');
 const imageCadence = 18
 
 export default function Home() {
+  ReactGA.send({ hitType: "pageview", page: "/" });
   const flatListRef = useRef(null);
   const [images, setImages] = useState([])
   const [lastImage, setLastImage] = useState('')
