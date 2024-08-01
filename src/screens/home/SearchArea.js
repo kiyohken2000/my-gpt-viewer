@@ -36,7 +36,8 @@ export default function SearchArea(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingTop: 10
   },
   input: {
     borderWidth: 1,

@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Text, FlatList, View } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
-import { collection, getDocs, query, limit, orderBy, startAfter, where } from "firebase/firestore";
-import { db } from "../../firebase";
+import RenderCount from "./RenderCount";
 import RenderImage from "./RenderImage";
 import { BottomSheet } from 'react-spring-bottom-sheet'
 import 'react-spring-bottom-sheet/dist/style.css';
@@ -39,6 +38,7 @@ export default function Home() {
   const [currentImage, setCurrentImage] = useState('')
   const [currentIndex, setCurrentIndex] = useState(null)
   const [searchPrompt, setSearchPrompt] = useState('')
+  const [recordCount, setRecordCount] = useState(0)
 
   const scrollToTop = () => {
     if (flatListRef.current) {
@@ -68,6 +68,10 @@ export default function Home() {
       ...searchParams,
       cacheable: false,
     });
+    const { nbHits } = await index.search('', {
+      hitsPerPage: 0,
+    });
+    setRecordCount(nbHits)
 
     const items = hits.map(hit => ({
       ...hit,
@@ -161,6 +165,10 @@ export default function Home() {
           setAllLoaded(false)
           setSearchPrompt('')
         }}
+      />
+      <RenderCount
+        images={images}
+        recordCount={recordCount}
       />
       <FlatList
         ref={flatListRef}
