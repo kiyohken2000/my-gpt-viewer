@@ -15,7 +15,7 @@ export default function RenderImage(props) {
     >
       <Image
         source={{ uri: item.thumb }}
-        style={styles.imageStyle}
+        style={isLoading?styles.unloadImage:styles.imageStyle}
         onLoad={() => setIsLoading(false)}
       />
       {isLoading?
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     height: width / 3,
     margin: 1,
     resizeMode: 'cover',
+  },
+  unloadImage: {
+    width: 0,
+    height: 0,
   },
   container: {
     width: width / 3,
