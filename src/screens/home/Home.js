@@ -64,12 +64,9 @@ export default function Home() {
       searchParams.restrictSearchableAttributes = ['prompt'];
     }
 
-    const { hits, page: currentPage, nbPages } = await index.search(prompt, {
+    const { hits, page: currentPage, nbPages, nbHits } = await index.search(prompt, {
       ...searchParams,
       cacheable: false,
-    });
-    const { nbHits } = await index.search('', {
-      hitsPerPage: 0,
     });
     setRecordCount(nbHits)
 
