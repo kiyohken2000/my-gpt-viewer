@@ -1,10 +1,12 @@
-import React from "react";
-import { TouchableOpacity, Image, Dimensions, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, Image, Dimensions, StyleSheet, ActivityIndicator, View } from "react-native";
+import { colors } from "../../theme";
 
 const { width } = Dimensions.get('window')
 
 export default function RenderImage(props) {
   const { item, onPress } = props
+  const [isLoading, setIsLoading] = useState(true)
  
   return (
     <>
@@ -14,7 +16,17 @@ export default function RenderImage(props) {
       <Image
         source={{ uri: item.thumb }}
         style={styles.imageStyle}
+        onLoad={() => setIsLoading(false)}
       />
+      {isLoading?
+        <View style={styles.container}>
+          <ActivityIndicator
+            size='large'
+            color={colors.darkPurple}
+          />
+        </View>
+        :null
+      }
     </TouchableOpacity>
     </>
   )
@@ -26,5 +38,12 @@ const styles = StyleSheet.create({
     height: width / 3,
     margin: 1,
     resizeMode: 'cover',
+  },
+  container: {
+    width: width / 3,
+    height: width / 3,
+    margin: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
