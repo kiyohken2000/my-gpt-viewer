@@ -14,6 +14,7 @@ import SearchArea from "./SearchArea";
 import algoliasearch from 'algoliasearch/lite';
 import { algoliaKey } from "../../apiKey";
 import ReactGA from "react-ga4";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const searchClient = algoliasearch(
   algoliaKey.appID,
@@ -37,8 +38,9 @@ export default function Home() {
   const [modalVisible, setModalVisible] = useState(false)
   const [currentImage, setCurrentImage] = useState('')
   const [currentIndex, setCurrentIndex] = useState(null)
-  const [searchPrompt, setSearchPrompt] = useState('')
   const [recordCount, setRecordCount] = useState(0)
+  const [searchPrompt, setSearchPrompt] = useState('')
+  const debouncedSearchPrompt = useDebounce(searchPrompt, 500)
 
   const scrollToTop = () => {
     if (flatListRef.current) {
@@ -92,10 +94,12 @@ export default function Home() {
   useEffect(() => {
     setAllLoaded(false);
     setLastDoc(-1);
-    fetchImages(0, searchPrompt).then(() => {
-      scrollToTop();
-    });
-  }, [searchPrompt])
+    if (debouncedSearchPrompt === '' || debouncedSearchPrompt.length > 0) {
+      fetchImages(0, debouncedSearchPrompt).then(() => {
+        scrollToTop();
+      });
+    }
+  }, [debouncedSearchPrompt]);
 
   useEffect(() => {
     const tags = getTags({images})
@@ -157,10 +161,23 @@ export default function Home() {
     <ScreenTemplate>
       <SearchArea
         searchPrompt={searchPrompt}
-        setSearchPrompt={setSearchPrompt}
+        setSearchPrompt={(value) => {
+          setSearchPrompt(value);
+          if (value === '') {
+            // 空の場合は即時に検索を実行
+            setAllLoaded(false);
+            setLastDoc(-1);
+            fetchImages(0, '').then(() => {
+              scrollToTop();
+            });
+          }
+        }}
         onClear={() => {
-          setAllLoaded(false)
-          setSearchPrompt('')
+          setAllLoaded(false);
+          setSearchPrompt('');
+          fetchImages(0, '').then(() => {
+            scrollToTop();
+          });
         }}
       />
       <RenderCount
