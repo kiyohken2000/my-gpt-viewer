@@ -2,6 +2,7 @@ import React from "react";
 import Routes from "./route/Routes";
 import { InitializeContextProvider } from './contexts/InitializeContext'
 import { UserContextProvider } from './contexts/UserContext'
+import { PageContextProvider } from "./contexts/PageContext";
 import ReactGA from "react-ga4";
 
 export default function App() {
@@ -10,7 +11,9 @@ export default function App() {
   return (
     <InitializeContextProvider>
       <UserContextProvider>
-        <Routes />
+        <PageContextProvider>
+          <Routes />
+        </PageContextProvider>
       </UserContextProvider>
     </InitializeContextProvider>
   )

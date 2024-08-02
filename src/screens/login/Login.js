@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import ScreenTemplate from '../../components/ScreenTemplate'
 import { colors, fontSize } from "../../theme";
 import { UserContext } from "../../contexts/UserContext";
 import Button from '../../components/Button'
@@ -17,20 +16,18 @@ export default function Login() {
   }
 
   return (
-    <ScreenTemplate>
-      <View style={styles.container}>
-        <Text style={styles.label}>Login Screen</Text>
-        <View style={{width: '50%'}}>
-          <Button
-            label='Login'
-            onPress={onLoginPress}
-            color={colors.lightPurple}
-            desable={false}
-            labelColor={colors.white}
-          />
-        </View>
+    <View style={styles.container}>
+      <Text style={styles.label}>Login Screen</Text>
+      <View style={{width: '50%'}}>
+        <Button
+          label='Login'
+          onPress={onLoginPress}
+          color={colors.lightPurple}
+          desable={false}
+          labelColor={colors.white}
+        />
       </View>
-    </ScreenTemplate>
+    </View>
   )
 }
 

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import ScreenTemplate from '../../components/ScreenTemplate'
 import { colors, fontSize } from "../../theme";
 import { InitializeContext } from '../../contexts/InitializeContext'
 import { UserContext } from "../../contexts/UserContext";
@@ -24,11 +23,9 @@ export default function Initialize() {
   }, [])
 
   return (
-    <ScreenTemplate>
-      <View style={styles.container}>
-        <Text style={styles.label}>Loading</Text>
-      </View>
-    </ScreenTemplate>
+    <View style={styles.container}>
+      <Text style={styles.label}>Loading</Text>
+    </View>
   )
 }
 

@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, View, TouchableOpacity, Text, Modal, StyleSheet, Image, Dimensions } from "react-native";
 import { colors } from "../../../theme";
 import Button from "../../../components/Button";
 import Element from "./Element";
 import ArrowButton from "./ArrowButton";
+import ReactionButtons from "./ReactionButtons";
+import { db } from "../../../firebase";
+import { doc, updateDoc, increment } from 'firebase/firestore';
 
 const { height, width } = Dimensions.get('window')
 
 export default function DetaileView(props) {
+  const [isLikePressed, setIsLikePressed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { item, visible, requestClose, currentIndex, lastImage, setCurrentIndex, searchPrompt } = props
-  const { imageUrl, modelName, negativePrompt, prompt, viewerUrl, thumb } = item
+  const { imageUrl, modelName, negativePrompt, prompt, viewerUrl, thumb, like, dislike, id } = item
   const isLast = lastImage.id === item.id
+
+  useEffect(() => {
+    setIsLikePressed(false)
+  }, [item])
   
   const onLinkPress = () => {
     window.open(viewerUrl, '_blank');
@@ -18,6 +27,21 @@ export default function DetaileView(props) {
 
   const onArrowButtonPress = ({num}) => {
     setCurrentIndex(prev => prev + num)
+  }
+
+  const onLikePress = async() => {
+    try {
+      setIsLoading(true)
+      const docRef = doc(db, 'images', id);
+      await updateDoc(docRef, {
+        like: increment(1)
+      });
+      setIsLikePressed(true)
+    } catch(e) {
+      console.log('on like press error', e)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -61,6 +85,12 @@ export default function DetaileView(props) {
               </View>
             </View>
             <View style={{flex: 1}}>
+              <ReactionButtons
+                like={like}
+                onLikePress={onLikePress}
+                isLikePressed={isLikePressed}
+                isLoading={isLoading}
+              />
               <Element
                 label='モデル'
                 content={modelName}

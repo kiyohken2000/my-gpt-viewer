@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
+import BottomTab from "./BottomTab";
 
 export default function ScreenTemplate(props) {
   return (
@@ -7,6 +8,7 @@ export default function ScreenTemplate(props) {
       <View style={{flex: 1}}>
         {props.children}
       </View>
+      <BottomTab />
     </View>
   )
 }

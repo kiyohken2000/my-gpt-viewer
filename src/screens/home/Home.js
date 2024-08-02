@@ -56,7 +56,7 @@ export default function Home() {
     let searchParams = {
       hitsPerPage: imageCadence,
       page: page,
-      attributesToRetrieve: ['id', 'imageUrl', 'modelName', 'negativePrompt', 'prompt', 'thumb', 'viewerUrl'],
+      attributesToRetrieve: ['id', 'imageUrl', 'modelName', 'negativePrompt', 'prompt', 'thumb', 'viewerUrl', 'like', 'dislike'],
       attributesToHighlight: ['prompt'],
       highlightPreTag: '<em>',
       highlightPostTag: '</em>',

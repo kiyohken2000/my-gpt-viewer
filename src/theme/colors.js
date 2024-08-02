@@ -17,6 +17,7 @@ const colors = {
   aquamarine: '#7fffd4',
   floralwhite: '#fffaf0',
   khaki: '#f0e68c',
+  yellow: '#ffff00',
   clearBlack: '#000000c0',
 }
 
