@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { TouchableOpacity, Image, Dimensions, StyleSheet, ActivityIndicator, View } from "react-native";
-import { colors } from "../../theme";
+import { TouchableOpacity, Image, Dimensions, StyleSheet, ActivityIndicator, View, Text } from "react-native";
+import { colors, fontSize } from "../../theme";
+import { AiOutlineLike } from "react-icons/ai";
 
 const { width } = Dimensions.get('window')
 
@@ -18,6 +19,12 @@ export default function RenderImage(props) {
         style={isLoading?styles.unloadImage:styles.imageStyle}
         onLoad={() => setIsLoading(false)}
       />
+      <View style={styles.likeContainer}>
+        <View style={{paddingRight: 3}}>
+          <Text style={styles.likeLabel}>{item.like}</Text>
+        </View>
+        <AiOutlineLike color={colors.black} size={15} />
+      </View>
       {isLoading?
         <View style={styles.container}>
           <ActivityIndicator
@@ -49,5 +56,23 @@ const styles = StyleSheet.create({
     margin: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  likeContainer: {
+    backgroundColor: colors.yellow,
+    borderRadius: 20,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 5,
+    right: 5,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: colors.floralwhite
+  },
+  likeLabel: {
+    fontSize: fontSize.small,
+    fontWeight: '700',
+    color: colors.black
   }
 })
