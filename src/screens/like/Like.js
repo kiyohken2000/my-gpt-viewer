@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
 import algoliasearch from 'algoliasearch/lite';
 import { algoliaKey } from "../../apiKey";
 import ReactGA from "react-ga4";
 import RenderItem from "./RenderItem";
-import { PageContext } from "../../contexts/PageContext";
+import toast, { Toaster } from 'react-hot-toast';
 
 const searchClient = algoliasearch(
   algoliaKey.appID,
@@ -16,7 +16,6 @@ const index = searchClient.initIndex('image_firestore_like');
 export default function Like() {
   ReactGA.send({ hitType: "pageview", page: "/like" });
   const [images, setImages] = useState([])
-  const { count } = useContext(PageContext)
 
   const fetchImages = async() => {
     try {
@@ -24,7 +23,9 @@ export default function Like() {
         hitsPerPage: 50,
         cacheable: false,
       });
-      setImages(hits)
+      const _hits = hits.filter((v) => v.like > 0)
+      setImages(_hits)
+      toast('いいねの多い最大50件を表示しています')
     } catch(e) {
       console.log('fetch images error', e)
     }
@@ -32,19 +33,20 @@ export default function Like() {
 
   useEffect(() => {
     fetchImages()
-  }, [count])
+  }, [])
 
   return (
     <ScreenTemplate>
       <View style={styles.container}>
       <FlatList
         data={images}
-        renderItem={({item}) => (
-          <RenderItem item={item} />
+        renderItem={({item, index}) => (
+          <RenderItem item={item} rank={index + 1} />
         )}
         keyExtractor={item => item.id}
       />
       </View>
+      <Toaster />
     </ScreenTemplate>
   )
 }

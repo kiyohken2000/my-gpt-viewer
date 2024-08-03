@@ -8,6 +8,7 @@ import Element from "../home/DetailView/Element";
 const { width } = Dimensions.get('window')
 
 export default function RenderItem(props) {
+  const { rank } = props
   const { like, id, imageUrl, modelName, negativePrompt, prompt } = props.item
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -34,10 +35,15 @@ export default function RenderItem(props) {
           onPress={() => setIsOpen(!isOpen)}
           style={styles.button}
         >
-          {!isOpen?
-            <RiArrowDownWideFill size={35} color={colors.purple} />:
-            <RiArrowUpWideFill size={35} color={colors.deeppink} />
-          }
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            {!isOpen?
+              <RiArrowDownWideFill size={35} color={colors.purple} />:
+              <RiArrowUpWideFill size={35} color={colors.deeppink} />
+            }
+            <View style={{paddingLeft: 10}}>
+              <Text style={styles.like}>{rank}位</Text>
+            </View>
+          </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View style={{paddingRight: 10}}>
               <Text style={styles.like}>{like}</Text>

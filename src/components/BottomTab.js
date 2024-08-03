@@ -1,21 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { colors, fontSize } from "../theme";
 import { FaImages } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
+import { IoInformationCircleOutline } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
-import { PageContext } from "../contexts/PageContext";
 
 export default function BottomTab() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { setCount } = useContext(PageContext)
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          setCount(prev => prev + 1)
           navigate('/')
         }}
       >
@@ -23,11 +21,17 @@ export default function BottomTab() {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          setCount(prev => prev + 1)
           navigate('/like')
         }}
       >
         <AiOutlineLike size={fontSize.xxxLarge} color={location.pathname === '/like'?colors.purple:colors.darkPurple} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigate('/links')
+        }}
+      >
+        <IoInformationCircleOutline size={fontSize.xxxLarge} color={location.pathname === '/links'?colors.purple:colors.darkPurple} />
       </TouchableOpacity>
     </View>
   )

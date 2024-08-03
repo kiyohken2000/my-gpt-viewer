@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text, useWindowDimensions, FlatList, TouchableOpacity, ScrollView } from "react-native";
-import Footer from "../../../components/Footer/Footer";
 import { fontSize, colors } from "../../../theme";
 import Button from "../../../components/Button";
 import BottomSheetHeader from "./BottomSheetHeader";
@@ -58,7 +57,6 @@ export default function BottomSheetContent(props) {
           </View>
         </View>
       </View>
-      <Footer/>
     </View>
   )
 }
