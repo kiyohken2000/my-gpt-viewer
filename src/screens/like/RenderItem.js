@@ -39,11 +39,11 @@ export default function RenderItem(props) {
             <RiArrowUpWideFill size={35} color={colors.deeppink} />
           }
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{paddingRight: 10}}>
+              <Text style={styles.like}>{like}</Text>
+            </View>
             <View style={styles.likeIcon}>
               <AiOutlineLike size={35} color={colors.black} />
-            </View>
-            <View style={{paddingLeft: 10}}>
-              <Text style={styles.like}>{like}</Text>
             </View>
           </View>
         </TouchableOpacity>

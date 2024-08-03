@@ -1,20 +1,23 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
+import { View, TouchableOpacity, StyleSheet, ActivityIndicator, Text } from "react-native";
 import { colors, fontSize } from "../../../theme";
 import { AiOutlineLike } from "react-icons/ai";
 
 export default function ReactionButtons(props) {
-  const { onLikePress, isLikePressed, isLoading } = props
+  const { like, onLikePress, isLoading } = props
   
   return (
     <View style={styles.container}>
+      <View style={styles.labelContainer}>
+        <Text style={styles.label}>{like}</Text>
+      </View>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: isLikePressed?colors.yellow:colors.lightPurple}]}
-        disabled={isLikePressed}
+        style={styles.button}
+        disabled={isLoading}
         onPress={onLikePress}
       >
         {!isLoading?
-          <AiOutlineLike size={35} color={isLikePressed?colors.black:colors.white} />:
+          <AiOutlineLike size={35} color={colors.black} />:
           <ActivityIndicator size='small' color={colors.deeppink} />
         }
       </TouchableOpacity>
@@ -35,12 +38,16 @@ const styles = StyleSheet.create({
     fontSize: fontSize.xxxLarge,
     fontWeight: '700'
   },
+  labelContainer: {
+    paddingRight: 10
+  },
   button: {
     width: circleRatio,
     height: circleRatio,
     borderRadius: circleRatio/2,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.yellow
   },
   labelContainer: {
     paddingRight: 10

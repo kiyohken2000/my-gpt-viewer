@@ -139,7 +139,7 @@ export default function Home() {
     if(!_currentImage) return
     setCurrentImage(_currentImage)
     setModalVisible(true)
-  }, [currentIndex])
+  }, [currentIndex, images])
 
   useEffect(() => {
     const _lastImage = images.slice(-1)[0]
@@ -210,6 +210,7 @@ export default function Home() {
         lastImage={lastImage}
         setCurrentIndex={setCurrentIndex}
         searchPrompt={searchPrompt}
+        setImages={setImages}
       />
       <OpenButton onPress={() => setOpen(true)} />
       <BottomSheet
