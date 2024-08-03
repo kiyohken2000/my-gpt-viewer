@@ -41,8 +41,8 @@ export default function RenderImage(props) {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    width: width / 3,
-    height: width / 3,
+    width: width / 3.05,
+    height: width / 3.05,
     margin: 1,
     resizeMode: 'cover',
   },
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     height: 0,
   },
   container: {
-    width: width / 3,
-    height: width / 3,
+    width: width / 3.05,
+    height: width / 3.05,
     margin: 1,
     alignItems: 'center',
     justifyContent: 'center'

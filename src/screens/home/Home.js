@@ -201,6 +201,7 @@ export default function Home() {
         ListFooterComponent={() => (
           loading ? <Text>Loading...</Text> : null
         )}
+        contentContainerStyle={{alignItems: 'center'}}
       />
       <DetaileView
         item={currentImage}
