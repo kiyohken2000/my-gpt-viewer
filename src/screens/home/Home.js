@@ -218,7 +218,7 @@ export default function Home() {
         open={open}
         onDismiss={() => setOpen(false)}
         snapPoints={({ maxHeight }) => [
-          maxHeight * 0.95
+          maxHeight * 0.95,
         ]}
         expandOnContentDrag={false}
         blocking={false}

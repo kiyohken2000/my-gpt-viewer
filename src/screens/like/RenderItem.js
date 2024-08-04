@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Text, Dimensions, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { colors, fontSize } from "../../theme";
 import { AiOutlineLike } from "react-icons/ai";
 import { RiArrowUpWideFill, RiArrowDownWideFill } from "react-icons/ri";
 import Element from "../home/DetailView/Element";
-
-const { width } = Dimensions.get('window')
+import { calculateDesktopWidth } from "../../utils/functions";
 
 export default function RenderItem(props) {
   const { rank } = props
@@ -19,11 +18,11 @@ export default function RenderItem(props) {
         <Image
           source={{uri: imageUrl}}
           resizeMode='contain'
-          style={isLoading?styles.unloadImage:styles.image}
+          style={isLoading?styles.unloadImage:{width: calculateDesktopWidth({}), height: calculateDesktopWidth({})}}
           onLoad={() => setIsLoading(false)}
         />
         {isLoading?
-          <View style={styles.unloadContainer}>
+          <View style={[styles.unloadContainer, {width: calculateDesktopWidth({}), height: calculateDesktopWidth({})}]}>
             <ActivityIndicator
               size='large'
               color={colors.darkPurple}
@@ -88,10 +87,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: colors.gray
   },
-  image: {
-    height: width,
-    width: width
-  },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -116,8 +111,6 @@ const styles = StyleSheet.create({
     height: 0,
   },
   unloadContainer: {
-    height: width,
-    width: width,
     alignItems: 'center',
     justifyContent: 'center',
   }

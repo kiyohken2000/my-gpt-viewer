@@ -1,15 +1,69 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
-import Footer from "../../components/Footer/Footer";
 import { colors, fontSize } from "../../theme";
+import { storeLinks } from "../../config";
 
 export default function Links() {
+
+  const onLinkPress = ({url}) => {
+    window.open(url, '_blank');
+  }
+
   return (
     <ScreenTemplate>
       <View style={styles.container}>
-        <Text style={styles.label}>関連リンク</Text>
-        <Footer/>
+        <View style={styles.itemContainer}>
+          <Text style={styles.label}>ガチ有能AI助手画像ビューア</Text>
+        </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.title}>スマホアプリ「ガチ有能AI助手」で生成された画像はこのウェブサイトに掲載されます。</Text>
+          <View style={styles.elementContainer}>
+            <TouchableOpacity
+              onPress={() => onLinkPress({url: storeLinks.appStore})}
+            >
+              <Image
+                source={require('../../assets/images/appstore.png')}
+                resizeMode='contain'
+                style={styles.image}
+              />
+            </TouchableOpacity>
+            <View style={{paddingHorizontal: 10}} />
+            <TouchableOpacity
+              onPress={() => onLinkPress({url: storeLinks.googlePlay})}
+            >
+              <Image
+                source={require('../../assets/images/googleplay.png')}
+                resizeMode='contain'
+                style={styles.image2}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.title}>アプリ内で生成された楽曲はSunoで一覧できます。</Text>
+          <TouchableOpacity
+            onPress={() => onLinkPress({url: storeLinks.suno})}
+          >
+            <Image
+              source={require('../../assets/images/suno.png')}
+              resizeMode='contain'
+              style={styles.image}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.title}>アプリのサーバー使用料はご支援いただいた寄付金で賄っています。Buy me a coffeeよりご支援いただけますと幸いです。</Text>
+          <TouchableOpacity
+            onPress={() => onLinkPress({url: storeLinks.bmc})}
+          >
+            <Image
+              source={require('../../assets/images/bmc-button.png')}
+              resizeMode='contain'
+              style={styles.image3}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScreenTemplate>
   )
@@ -19,10 +73,41 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 10
+  },
+  itemContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: colors.lightsteelblue,
+    paddingVertical: 10,
+    width: '100%'
+  },
+  elementContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: fontSize.large,
+    textAlign: 'center'
   },
   label: {
-    fontSize: fontSize.large,
-    fontWeight: '700'
-  }
+    fontSize: fontSize.xxxLarge,
+    fontWeight: '700',
+    textAlign: 'center'
+  },
+  image: {
+    height: 70,
+    width: 150
+  },
+  image2: {
+    height: 70,
+    width: 180
+  },
+  image3: {
+    height: 70,
+    width: 170
+  },
 })

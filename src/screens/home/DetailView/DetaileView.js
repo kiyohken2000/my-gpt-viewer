@@ -7,6 +7,7 @@ import ArrowButton from "./ArrowButton";
 import ReactionButtons from "./ReactionButtons";
 import { db } from "../../../firebase";
 import { doc, updateDoc, increment, getDoc } from 'firebase/firestore';
+import { calculateDesktopWidth } from "../../../utils/functions";
 
 const { height, width } = Dimensions.get('window')
 
@@ -59,9 +60,9 @@ export default function DetaileView(props) {
       onDismiss={requestClose}
       animationType='fade'
       onRequestClose={requestClose}
-      transparent={false}
+      transparent={true}
     >
-      <View style={{flex: 1, paddingHorizontal: width * 0.01}}>
+      <View style={{flex: 1, paddingHorizontal: calculateDesktopWidth({}) * 0.01, alignItems: 'center'}}>
         <ScrollView style={styles.container}>
           <View style={styles.innerContainer}>
             <View style={{}}>
@@ -78,8 +79,8 @@ export default function DetaileView(props) {
                 source={{uri: imageUrl}}
                 resizeMode='cover'
                 style={{
-                  height: width * 0.9,
-                  width: width * 0.9,
+                  height: calculateDesktopWidth({}) * 0.9,
+                  width: calculateDesktopWidth({}) * 0.9,
                   alignSelf: 'center',
                 }}
               />
@@ -117,7 +118,7 @@ export default function DetaileView(props) {
             </View>
           </View>
         </ScrollView>
-        <View style={{flexDirection: 'row', paddingBottom: 10}}>
+        <View style={{flexDirection: 'row', paddingBottom: 10, width: calculateDesktopWidth({}), backgroundColor: colors.white, paddingHorizontal: 10}}>
           <View style={{flex: 1}}>
             <Button
               label='アップローダで開く'
@@ -146,9 +147,10 @@ export default function DetaileView(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: calculateDesktopWidth({}),
+    backgroundColor: colors.white
   },
   innerContainer: {
-    backgroundColor: colors.white,
   },
   linkText: {
     color: colors.purple,
@@ -159,5 +161,5 @@ const styles = StyleSheet.create({
     zIndex: 1,
     height: '100%',
     justifyContent: 'center' 
-  }
+  },
 })

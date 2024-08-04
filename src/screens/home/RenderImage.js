@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity, Image, Dimensions, StyleSheet, ActivityIndicator, View, Text } from "react-native";
 import { colors, fontSize } from "../../theme";
 import { AiOutlineLike } from "react-icons/ai";
+import { calculateDesktopWidth } from "../../utils/functions";
 
 const { width } = Dimensions.get('window')
 
@@ -16,7 +17,7 @@ export default function RenderImage(props) {
     >
       <Image
         source={{ uri: item.thumb }}
-        style={isLoading?styles.unloadImage:styles.imageStyle}
+        style={isLoading?styles.unloadImage:[styles.imageStyle, {width: calculateDesktopWidth({}) / 3.05, height: calculateDesktopWidth({}) / 3.05}]}
         onLoad={() => setIsLoading(false)}
       />
       <View style={styles.likeContainer}>
@@ -26,7 +27,7 @@ export default function RenderImage(props) {
         <AiOutlineLike color={colors.black} size={15} />
       </View>
       {isLoading?
-        <View style={styles.container}>
+        <View style={[styles.container, {width: calculateDesktopWidth({}) / 3.05, height: calculateDesktopWidth({}) / 3.05}]}>
           <ActivityIndicator
             size='large'
             color={colors.darkPurple}
@@ -41,8 +42,6 @@ export default function RenderImage(props) {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    width: width / 3.05,
-    height: width / 3.05,
     margin: 1,
     resizeMode: 'cover',
   },
@@ -51,8 +50,6 @@ const styles = StyleSheet.create({
     height: 0,
   },
   container: {
-    width: width / 3.05,
-    height: width / 3.05,
     margin: 1,
     alignItems: 'center',
     justifyContent: 'center'
