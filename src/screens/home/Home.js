@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Text, FlatList, View } from "react-native";
+import { Text, FlatList } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
 import RenderCount from "./RenderCount";
 import RenderImage from "./RenderImage";
@@ -15,6 +15,7 @@ import algoliasearch from 'algoliasearch/lite';
 import { algoliaKey } from "../../apiKey";
 import ReactGA from "react-ga4";
 import { useDebounce } from "../../hooks/useDebounce";
+import { calculateDesktopWidth } from "../../utils/functions";
 
 const searchClient = algoliasearch(
   algoliaKey.appID,
@@ -41,6 +42,12 @@ export default function Home() {
   const [recordCount, setRecordCount] = useState(0)
   const [searchPrompt, setSearchPrompt] = useState('')
   const debouncedSearchPrompt = useDebounce(searchPrompt, 500)
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--rsbs-max-w', `${calculateDesktopWidth({})}px`);
+    document.documentElement.style.setProperty('--rsbs-ml', 'auto');
+    document.documentElement.style.setProperty('--rsbs-mr', 'auto');
+  }, []);
 
   const scrollToTop = () => {
     if (flatListRef.current) {
