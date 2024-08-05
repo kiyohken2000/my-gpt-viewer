@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image, TouchableOpacity, Text, ScrollView } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
 import { colors, fontSize } from "../../theme";
-import { storeLinks } from "../../config";
+import { storeLinks, version } from "../../config";
 
 export default function Links() {
 
@@ -73,8 +73,11 @@ export default function Links() {
           <TouchableOpacity
             onPress={() => onLinkPress({url: storeLinks.twitter})}
           >
-            <Text style={styles.linkText}>@votepurchases</Text>
+            <Text style={styles.linkText}>@votepurchase</Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.versionContainer}>
+          <Text style={styles.versionLabel}>version: {version}</Text>
         </View>
       </ScrollView>
     </ScreenTemplate>
@@ -113,6 +116,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textDecorationLine: 'underline',
     color: colors.blueLight
+  },
+  versionLabel: {
+    fontSize: fontSize.small
+  },
+  versionContainer: {
+    alignItems: 'center'
   },
   image: {
     height: 70,

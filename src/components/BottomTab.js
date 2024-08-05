@@ -16,6 +16,7 @@ export default function BottomTab() {
         onPress={() => {
           navigate('/')
         }}
+        style={styles.item}
       >
         <FaImages size={fontSize.xxxLarge} color={location.pathname === '/'?colors.purple:colors.darkPurple} />
       </TouchableOpacity>
@@ -23,6 +24,7 @@ export default function BottomTab() {
         onPress={() => {
           navigate('/like')
         }}
+        style={styles.item}
       >
         <AiOutlineLike size={fontSize.xxxLarge} color={location.pathname === '/like'?colors.purple:colors.darkPurple} />
       </TouchableOpacity>
@@ -30,6 +32,7 @@ export default function BottomTab() {
         onPress={() => {
           navigate('/links')
         }}
+        style={styles.item}
       >
         <IoInformationCircleOutline size={fontSize.xxxLarge} color={location.pathname === '/links'?colors.purple:colors.darkPurple} />
       </TouchableOpacity>
@@ -40,9 +43,13 @@ export default function BottomTab() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingVertical: 10,
-    justifyContent: 'space-around',
+    paddingVertical: 15,
     borderTopWidth: 1,
     borderColor: colors.gray
+  },
+  item: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 })

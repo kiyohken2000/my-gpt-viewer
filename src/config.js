@@ -4,6 +4,7 @@ const config = {
 }
 
 const basename = ''
+const version = '1.0.0'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -13,4 +14,4 @@ const storeLinks = {
   twitter: 'https://x.com/votepurchase',
 }
 
-export { config, basename, storeLinks }
+export { config, basename, storeLinks, version }
