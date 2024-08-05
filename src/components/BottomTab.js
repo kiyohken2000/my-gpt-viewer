@@ -43,7 +43,6 @@ export default function BottomTab() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingVertical: 15,
     borderTopWidth: 1,
     borderColor: colors.gray
   },
@@ -51,5 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 15,
   }
 })
