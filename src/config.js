@@ -10,6 +10,7 @@ const storeLinks = {
   googlePlay: 'https://play.google.com/store/apps/details?id=net.votepurchase.mygpt',
   bmc: 'https://buymeacoffee.com/votepurchase',
   suno: 'https://suno.com/@softstagemanager010',
+  twitter: 'https://x.com/votepurchase',
 }
 
 export { config, basename, storeLinks }

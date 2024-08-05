@@ -44,6 +44,8 @@ export default function Like() {
           <RenderItem item={item} rank={index + 1} />
         )}
         keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
       />
       </View>
       <Toaster />

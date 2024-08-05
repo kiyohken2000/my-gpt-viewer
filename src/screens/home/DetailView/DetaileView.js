@@ -63,7 +63,11 @@ export default function DetaileView(props) {
       transparent={true}
     >
       <View style={{flex: 1, paddingHorizontal: calculateDesktopWidth({}) * 0.01, alignItems: 'center'}}>
-        <ScrollView style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
           <View style={styles.innerContainer}>
             <View style={{}}>
               <View style={[styles.arrowButtonContainer, {left: 1}]}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity, Text, ScrollView } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
 import { colors, fontSize } from "../../theme";
 import { storeLinks } from "../../config";
@@ -12,7 +12,11 @@ export default function Links() {
 
   return (
     <ScreenTemplate>
-      <View style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <View style={styles.itemContainer}>
           <Text style={styles.label}>ガチ有能AI助手画像ビューア</Text>
         </View>
@@ -64,7 +68,15 @@ export default function Links() {
             />
           </TouchableOpacity>
         </View>
-      </View>
+        <View style={styles.itemContainer}>
+          <Text style={styles.title}>感想・要望はXへどうぞ</Text>
+          <TouchableOpacity
+            onPress={() => onLinkPress({url: storeLinks.twitter})}
+          >
+            <Text style={styles.linkText}>@votepurchases</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </ScreenTemplate>
   )
 }
@@ -72,8 +84,6 @@ export default function Links() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingHorizontal: 10
   },
   itemContainer: {
@@ -97,6 +107,12 @@ const styles = StyleSheet.create({
     fontSize: fontSize.xxxLarge,
     fontWeight: '700',
     textAlign: 'center'
+  },
+  linkText: {
+    fontSize: fontSize.large,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    color: colors.blueLight
   },
   image: {
     height: 70,

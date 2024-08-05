@@ -209,6 +209,8 @@ export default function Home() {
           loading ? <Text>Loading...</Text> : null
         )}
         contentContainerStyle={{alignItems: 'center'}}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
       />
       <DetaileView
         item={currentImage}
