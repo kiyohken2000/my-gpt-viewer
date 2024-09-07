@@ -69,6 +69,14 @@ export default function Links() {
           </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
+          <Text style={styles.title}>アプリの使い方動画</Text>
+          <TouchableOpacity
+            onPress={() => onLinkPress({url: storeLinks.youtube})}
+          >
+            <Text style={styles.linkText}>ガチ有能AI助手使い方動画</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.itemContainer}>
           <Text style={styles.title}>感想・要望はXへどうぞ</Text>
           <TouchableOpacity
             onPress={() => onLinkPress({url: storeLinks.twitter})}

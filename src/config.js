@@ -4,7 +4,7 @@ const config = {
 }
 
 const basename = ''
-const version = '1.0.1'
+const version = '1.0.2'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -12,6 +12,7 @@ const storeLinks = {
   bmc: 'https://buymeacoffee.com/votepurchase',
   suno: 'https://suno.com/@softstagemanager010',
   twitter: 'https://x.com/votepurchase',
+  youtube: 'https://www.youtube.com/playlist?list=PLCulJu7bwJxexi0pu9Dhflu-kAhuNB6Sh',
 }
 
 export { config, basename, storeLinks, version }
