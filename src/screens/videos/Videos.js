@@ -75,6 +75,7 @@ export default function Videos() {
       <View style={styles.container}>
         <FlatList
           data={videos}
+          showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           renderItem={({item}) => (
             <RenderVideo item={item} />
