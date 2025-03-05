@@ -77,6 +77,14 @@ export default function Links() {
           </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
+          <Text style={styles.title}>imgbb</Text>
+          <TouchableOpacity
+            onPress={() => onLinkPress({url: storeLinks.imgbbLink})}
+          >
+            <Text style={styles.linkText}>生成された全画像はこちら</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.itemContainer}>
           <Text style={styles.title}>感想・要望はXへどうぞ</Text>
           <TouchableOpacity
             onPress={() => onLinkPress({url: storeLinks.twitter})}
