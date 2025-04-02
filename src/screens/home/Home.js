@@ -41,7 +41,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(null)
   const [recordCount, setRecordCount] = useState(0)
   const [searchPrompt, setSearchPrompt] = useState('')
-  const debouncedSearchPrompt = useDebounce(searchPrompt, 500)
+  const debouncedSearchPrompt = useDebounce(searchPrompt, 1000)
 
   useEffect(() => {
     document.documentElement.style.setProperty('--rsbs-max-w', `${calculateDesktopWidth({})}px`);
