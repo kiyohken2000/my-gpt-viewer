@@ -1,10 +1,12 @@
+import { googleSheetKey } from "./apiKey"
+
 const config = {
   siteTitle: 'ガチ有能AI助手画像ビューア',
   siteUrl: 'https://gachiai.xyz'
 }
 
 const basename = ''
-const version = '1.0.6'
+const version = '1.0.7'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -16,4 +18,9 @@ const storeLinks = {
   imgbbLink: 'https://purchase-vote.imgbb.com',
 }
 
-export { config, basename, storeLinks, version }
+const sheetId = '15OtDRuaSXWhZ8odAHi0E7Pn93hzvO3gvDIYSpopNngY'
+const sheetName = 'sheet2'
+const googleSheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?valueRenderOption=FORMATTED_VALUE&key=${googleSheetKey}`
+
+
+export { config, basename, storeLinks, version, googleSheetUrl }
