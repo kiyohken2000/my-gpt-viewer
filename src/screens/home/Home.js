@@ -23,7 +23,7 @@ const searchClient = algoliasearch(
 );
 const index = searchClient.initIndex('image_firestore');
 
-const imageCadence = 36
+const imageCadence = 51
 
 export default function Home() {
   ReactGA.send({ hitType: "pageview", page: "/" });
@@ -41,7 +41,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(null)
   const [recordCount, setRecordCount] = useState(0)
   const [searchPrompt, setSearchPrompt] = useState('')
-  const debouncedSearchPrompt = useDebounce(searchPrompt, 1000)
+  const debouncedSearchPrompt = useDebounce(searchPrompt, 500)
 
   useEffect(() => {
     document.documentElement.style.setProperty('--rsbs-max-w', `${calculateDesktopWidth({})}px`);

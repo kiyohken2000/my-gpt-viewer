@@ -6,7 +6,7 @@ const config = {
 }
 
 const basename = ''
-const version = '1.0.9'
+const version = '1.0.10'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
