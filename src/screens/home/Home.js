@@ -23,7 +23,7 @@ const searchClient = algoliasearch(
 );
 const index = searchClient.initIndex('image_firestore');
 
-const imageCadence = 18
+const imageCadence = 36
 
 export default function Home() {
   ReactGA.send({ hitType: "pageview", page: "/" });
