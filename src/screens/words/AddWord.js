@@ -121,7 +121,7 @@ export default function AddWord(props) {
           style={styles.input}
           onChangeText={onChangeText}
           value={text}
-          maxLength={15}
+          maxLength={20}
           placeholder="5〜20文字"
           placeholderTextColor={colors.gray}
         />
