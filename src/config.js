@@ -5,8 +5,13 @@ const config = {
   siteUrl: 'https://gachiai.xyz'
 }
 
+// NGワードの削除
+const stripeLink = 'https://buy.stripe.com/6oE7vQ7VX0F14b6144'
+// NGワードの追加
+const stripeLinkAdd = 'https://buy.stripe.com/9B67sN9bt6Nv5yQbZbaVa01'
+
 const basename = ''
-const version = '1.0.10'
+const version = '1.0.11'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -23,4 +28,4 @@ const sheetName = 'sheet2'
 const googleSheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?valueRenderOption=FORMATTED_VALUE&key=${googleSheetKey}`
 
 
-export { config, basename, storeLinks, version, googleSheetUrl }
+export { config, basename, storeLinks, version, googleSheetUrl, stripeLink, stripeLinkAdd, }

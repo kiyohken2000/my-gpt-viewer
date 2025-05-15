@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { colors, fontSize } from "../theme";
-import { FaImages, FaFilm } from "react-icons/fa";
+import { FaImages, FaFilm, FaBan } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -35,6 +35,14 @@ export default function BottomTab() {
         style={styles.item}
       >
         <FaFilm size={fontSize.xxxLarge} color={location.pathname === '/videos'?colors.purple:colors.darkPurple} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigate('/words')
+        }}
+        style={styles.item}
+      >
+        <FaBan size={fontSize.xxxLarge} color={location.pathname === '/words'?colors.purple:colors.darkPurple} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
