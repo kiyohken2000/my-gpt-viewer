@@ -25,7 +25,7 @@ export default function PaymentForm({ item, onPaymentCancel }) {
 
   return (
     <View style={styles.paymentContainer}>
-      <Text style={styles.paymentTitle}>「{item}」の削除料金をお支払いください</Text>
+      <Text style={styles.paymentTitle}>「{item}」<Text style={[styles.paymentTitle, {fontSize: fontSize.middle, fontWeight: '500'}]}>の削除料金をお支払いください</Text></Text>
       <Text style={styles.paymentDescription}>
         「削除を実行」ボタンをクリックすると、Stripeの安全な決済ページに移動します。
         支払いが完了すると、自動的にこのページに戻ります。
@@ -59,9 +59,12 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   paymentTitle: {
-    fontSize: fontSize.medium,
+    fontSize: fontSize.xLarge,
     fontWeight: '600',
     marginBottom: 15,
+  },
+  paymentDescription: {
+    fontSize: fontSize.middle
   },
   cardElementContainer: {
     padding: 10,

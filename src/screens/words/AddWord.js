@@ -128,7 +128,7 @@ export default function AddWord(props) {
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          label='追加(有料)'
+          label='追加(¥50)'
           color={colors.purple}
           labelColor={colors.white}
           onPress={handlePayment}
