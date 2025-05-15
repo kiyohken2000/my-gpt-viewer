@@ -122,7 +122,7 @@ export default function AddWord(props) {
           onChangeText={onChangeText}
           value={text}
           maxLength={15}
-          placeholder="10〜15文字"
+          placeholder="5〜20文字"
           placeholderTextColor={colors.gray}
         />
       </View>
