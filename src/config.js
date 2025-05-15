@@ -11,7 +11,7 @@ const stripeLink = 'https://buy.stripe.com/6oE7vQ7VX0F14b6144'
 const stripeLinkAdd = 'https://buy.stripe.com/9B67sN9bt6Nv5yQbZbaVa01'
 
 const basename = ''
-const version = '1.0.14'
+const version = '1.0.15'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -20,7 +20,7 @@ const storeLinks = {
   suno: 'https://suno.com/@softstagemanager010',
   twitter: 'https://x.com/votepurchase',
   youtube: 'https://www.youtube.com/playlist?list=PLCulJu7bwJxexi0pu9Dhflu-kAhuNB6Sh',
-  imgbbLink: 'https://purchase-vote.imgbb.com',
+  imgbbLink: 'https://retwpay.imgbb.com',
 }
 
 const sheetId = '15OtDRuaSXWhZ8odAHi0E7Pn93hzvO3gvDIYSpopNngY'
