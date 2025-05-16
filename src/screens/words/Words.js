@@ -9,7 +9,7 @@ import Header from "./Header";
 import AddWord from "./AddWord";
 
 export default function Words() {
-  ReactGA.send({ hitType: "pageview", page: "/like" });
+  ReactGA.send({ hitType: "pageview", page: "/words" });
   const [words, setWords] = useState([]);
   const [safeWords, setSafeWords] = useState([])
 
