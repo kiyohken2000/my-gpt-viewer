@@ -25,14 +25,14 @@ export default function PaymentForm({ item, onPaymentCancel }) {
 
   return (
     <View style={styles.paymentContainer}>
-      <Text style={styles.paymentTitle}>「{item}」<Text style={[styles.paymentTitle, {fontSize: fontSize.middle, fontWeight: '500'}]}>の削除料金をお支払いください</Text></Text>
+      <Text style={styles.paymentTitle}>「{item}」<Text style={[styles.paymentTitle, {fontSize: fontSize.middle, fontWeight: '500'}]}>の解除料金をお支払いください</Text></Text>
       <Text style={styles.paymentDescription}>
-        「削除を実行」ボタンをクリックすると、Stripeの安全な決済ページに移動します。
+        「解除を実行」ボタンをクリックすると、Stripeの安全な決済ページに移動します。
         支払いが完了すると、自動的にこのページに戻ります。
       </Text>
       <View style={styles.buttonGroup}>
         <Button
-          label={isProcess ? '処理中...' : '削除を実行（¥50）'}
+          label={isProcess ? '処理中...' : '解除を実行(¥50)'}
           color={colors.deeppink}
           labelColor={colors.white}
           onPress={handlePayment}

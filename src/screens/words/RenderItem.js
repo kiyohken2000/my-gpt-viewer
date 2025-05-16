@@ -116,7 +116,7 @@ export default function RenderItem(props) {
           </View>
           <View>
             <Button
-              label='削除'
+              label='解除'
               color={colors.deeppink}
               labelColor={colors.white}
               onPress={onButtonPress}
