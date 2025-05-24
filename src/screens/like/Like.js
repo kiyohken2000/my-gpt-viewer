@@ -20,12 +20,12 @@ export default function Like() {
   const fetchImages = async() => {
     try {
       const { hits } = await index.search('', {
-        hitsPerPage: 50,
+        hitsPerPage: 200,
         cacheable: false,
       });
       const _hits = hits.filter((v) => v.like > 0)
       setImages(_hits)
-      toast('いいねの多い最大50件を表示しています')
+      toast('いいねの多い最大200件を表示しています')
     } catch(e) {
       console.log('fetch images error', e)
     }

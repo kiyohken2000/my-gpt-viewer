@@ -11,7 +11,7 @@ const stripeLink = 'https://buy.stripe.com/6oE7vQ7VX0F14b6144'
 const stripeLinkAdd = 'https://buy.stripe.com/9B67sN9bt6Nv5yQbZbaVa01'
 
 const basename = ''
-const version = '1.0.17'
+const version = '1.0.18'
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -21,6 +21,7 @@ const storeLinks = {
   twitter: 'https://x.com/votepurchase',
   youtube: 'https://www.youtube.com/playlist?list=PLCulJu7bwJxexi0pu9Dhflu-kAhuNB6Sh',
   imgbbLink: 'https://retwpay.imgbb.com',
+  line: 'https://store.line.me/stickershop/author/5435882/'
 }
 
 const sheetId = '15OtDRuaSXWhZ8odAHi0E7Pn93hzvO3gvDIYSpopNngY'

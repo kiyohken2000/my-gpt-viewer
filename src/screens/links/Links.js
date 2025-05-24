@@ -69,20 +69,28 @@ export default function Links() {
           </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-          <Text style={styles.title}>アプリの使い方動画</Text>
-          <TouchableOpacity
-            onPress={() => onLinkPress({url: storeLinks.youtube})}
-          >
-            <Text style={styles.linkText}>ガチ有能AI助手使い方動画</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-          <Text style={styles.title}>imgbb</Text>
-          <TouchableOpacity
-            onPress={() => onLinkPress({url: storeLinks.imgbbLink})}
-          >
-            <Text style={styles.linkText}>生成された全画像はこちら</Text>
-          </TouchableOpacity>
+          <Text style={styles.title}>各種リンク</Text>
+          <View style={styles.linkItemContainer}>
+            <TouchableOpacity
+              onPress={() => onLinkPress({url: storeLinks.youtube})}
+            >
+              <Text style={styles.linkText}>ガチ有能AI助手使い方動画</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.linkItemContainer}>
+            <TouchableOpacity
+              onPress={() => onLinkPress({url: storeLinks.imgbbLink})}
+            >
+              <Text style={styles.linkText}>生成された全画像はこちら</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.linkItemContainer}>
+            <TouchableOpacity
+              onPress={() => onLinkPress({url: storeLinks.line})}
+            >
+              <Text style={styles.linkText}>にもにゃんLINEスタンプ販売中</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.itemContainer}>
           <Text style={styles.title}>感想・要望はXへどうぞ</Text>
@@ -151,4 +159,7 @@ const styles = StyleSheet.create({
     height: 70,
     width: 170
   },
+  linkItemContainer: {
+    paddingTop: 5,
+  }
 })
