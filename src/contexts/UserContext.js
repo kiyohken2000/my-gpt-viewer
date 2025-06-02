@@ -4,11 +4,13 @@ export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {
   const [user, setUser] = useState('')
+  const [homeVisible, setHomeVisible] = useState(false)
 
   return (
     <UserContext.Provider
       value={{
-        user, setUser
+        user, setUser,
+        homeVisible, setHomeVisible,
       }}
     >
       {props.children}
