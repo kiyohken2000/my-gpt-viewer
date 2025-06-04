@@ -29,9 +29,9 @@ export const sampleData = [
   {
     id: 4,
     label: 'Noobreal',
-    prompt: '1girl, green eyes, orange very long hair, messy hair, ahoge, hair between eyes, cat fluff ears, striped tail, white frilly blouse, black ribbon tie, beige long skirt,',
+    prompt: '1girl, green eyes, orange very long hair, messy hair, ahoge, hair between eyes, cat fluff ears, striped tail, white frilly blouse, black ribbon tie, beige long skirt, realistic,',
     negativePrompt: 'blur, sketch, comic, cartoon, toon, oil painting (medium), flat color, outline, 3D, 2.5D, 2D, unreal, unity, blender, anime ,smooth skin,',
-    imageUrl: 'https://files.catbox.moe/tuivyw.png',
+    imageUrl: 'https://files.catbox.moe/ygc7pi.png',
     visible: true,
     baseModel: 'Illustrious',
   },
@@ -47,9 +47,9 @@ export const sampleData = [
   {
     id: 6,
     label: 'PornMasterPro',
-    prompt: '1girl, green eyes, orange very long hair, messy hair, ahoge, hair between eyes, cat fluff ears, striped tail, white frilly blouse, black ribbon tie, beige long skirt,',
+    prompt: '1girl, green eyes, orange very long hair, messy hair, ahoge, hair between eyes, cat fluff ears, striped tail, white frilly blouse, black ribbon tie, beige long skirt, realistic,',
     negativePrompt: 'lowres, worst aesthetic, bad quality, worst quality, bad anatomy, jpeg artifacts, scan artifacts, lossy-lossless, unfinished, ugly, poorly drawn, greyscale, (illustration, 2d, 2.5D, 3d, painting (medium), toon (style), sketch, comic, anime,flat color,outline,smooth skin:1.2) watermark, text, extra digits',
-    imageUrl: 'https://files.catbox.moe/zrn3d6.png',
+    imageUrl: 'https://files.catbox.moe/8rq5ad.png',
     visible: true,
     baseModel: 'Illustrious',
   },
