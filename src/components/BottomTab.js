@@ -4,6 +4,7 @@ import { colors, fontSize } from "../theme";
 import { FaImages, FaFilm, FaBan } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoInformationCircleOutline } from "react-icons/io5";
+import { ImFilePicture } from "react-icons/im";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function BottomTab() {
@@ -43,6 +44,14 @@ export default function BottomTab() {
         style={styles.item}
       >
         <FaBan size={fontSize.xxxLarge} color={location.pathname === '/words'?colors.purple:colors.darkPurple} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigate('/sample')
+        }}
+        style={styles.item}
+      >
+        <ImFilePicture size={fontSize.xxxLarge} color={location.pathname === '/sample'?colors.purple:colors.darkPurple} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
