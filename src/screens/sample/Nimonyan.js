@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 import { colors, fontSize } from "../../theme";
 import toast, { Toaster } from 'react-hot-toast';
 
-const prompt = '1girl, chibi, green_eyes, orange_very_long_hair, messy_hair, ahoge, hair_between_eyes, cat_fluff_ears, striped_tail, white_frilly_blouse, black_ribbon_tie, beige_long_skirt,'
+const prompt = '1girl, chibi, green eyes, orange very long hair, messy hair, ahoge, hair between eyes, cat fluff ears, striped tail, white frilly blouse, black ribbon tie, beige long skirt,'
 
 export default function Nimonyan() {
 
