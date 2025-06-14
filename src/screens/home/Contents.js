@@ -90,7 +90,17 @@ export default function Contents() {
     }
 
     setLastDoc(currentPage);
-    setImages(prevImages => page === 0 ? items : [...prevImages, ...items]);
+    setImages(prevImages => {
+      if (page === 0) {
+        return items;
+      } else {
+        // 既存の画像のIDセットを作成
+        const existingIds = new Set(prevImages.map(img => img.id));
+        // 新しいアイテムから重複を除外
+        const newItems = items.filter(item => !existingIds.has(item.id));
+        return [...prevImages, ...newItems];
+      }
+    });
   } catch (error) {
     console.error('Error fetching images:', error);
   } finally {
