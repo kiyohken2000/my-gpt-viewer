@@ -177,7 +177,6 @@ export default function Contents() {
 
   return (
     <ScreenTemplate>
-      <ExoClickAd />
       <SearchArea
         searchPrompt={searchPrompt}
         setSearchPrompt={(value) => {
