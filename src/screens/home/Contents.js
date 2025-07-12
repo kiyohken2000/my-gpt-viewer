@@ -16,6 +16,7 @@ import { algoliaKey } from "../../apiKey";
 import ReactGA from "react-ga4";
 import { useDebounce } from "../../hooks/useDebounce";
 import { calculateDesktopWidth } from "../../utils/functions";
+import ExoClickAd from "../../components/ExoClickAd";
 
 const searchClient = algoliasearch(
   algoliaKey.appID,
@@ -176,6 +177,7 @@ export default function Contents() {
 
   return (
     <ScreenTemplate>
+      <ExoClickAd />
       <SearchArea
         searchPrompt={searchPrompt}
         setSearchPrompt={(value) => {

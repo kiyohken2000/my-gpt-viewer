@@ -11,7 +11,8 @@ export default function PreContents(props) {
     <ScreenTemplate>
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.label}>※NSFW画像が含まれます</Text>
+          <Text style={styles.label}>※18歳未満の方は閲覧をご遠慮ください。</Text>
+          <Text style={styles.label}>NSFW画像が含まれます。</Text>
         </View>
         <Button
           label='画像を表示する'
@@ -32,7 +33,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textContainer: {
-    paddingBottom: 10
+    paddingBottom: 10,
+    alignItems: 'center'
   },
   label: {
     fontSize: fontSize.large,
