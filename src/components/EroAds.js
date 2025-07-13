@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, View, StyleSheet } from 'react-native';
 
 const EroAds = ({ 
-  spaceId = "8173173", 
-  width = "300", 
+  spaceId = "8173200", 
+  width = "320", 
   height = "50",
   className = "",
   style = {}
