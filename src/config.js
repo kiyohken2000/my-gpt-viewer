@@ -11,7 +11,8 @@ const stripeLink = 'https://buy.stripe.com/6oE7vQ7VX0F14b6144'
 const stripeLinkAdd = 'https://buy.stripe.com/9B67sN9bt6Nv5yQbZbaVa01'
 
 const basename = ''
-const version = '1.0.28'
+const version = '1.0.30'
+const isDevMode = false
 
 const storeLinks = {
   appStore: 'https://apps.apple.com/jp/app/id6474574029',
@@ -29,4 +30,4 @@ const sheetName = 'sheet2'
 const googleSheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?valueRenderOption=FORMATTED_VALUE&key=${googleSheetKey}`
 
 
-export { config, basename, storeLinks, version, googleSheetUrl, stripeLink, stripeLinkAdd, }
+export { config, basename, storeLinks, version, googleSheetUrl, stripeLink, stripeLinkAdd, isDevMode, }

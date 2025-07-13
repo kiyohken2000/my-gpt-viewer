@@ -8,6 +8,7 @@ import ReactionButtons from "./ReactionButtons";
 import { db } from "../../../firebase";
 import { doc, updateDoc, increment, getDoc } from 'firebase/firestore';
 import { calculateDesktopWidth } from "../../../utils/functions";
+import EroAds from "../../../components/EroAds";
 
 const { height, width } = Dimensions.get('window')
 
@@ -63,6 +64,7 @@ export default function DetaileView(props) {
       transparent={true}
     >
       <View style={{flex: 1, paddingHorizontal: calculateDesktopWidth({}) * 0.01, alignItems: 'center'}}>
+        <EroAds/>
         <ScrollView
           style={styles.container}
           showsVerticalScrollIndicator={false}
