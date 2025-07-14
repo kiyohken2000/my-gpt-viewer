@@ -179,7 +179,6 @@ export default function Contents() {
 
   return (
     <ScreenTemplate>
-      <EroAds debug={true} />
       <SearchArea
         searchPrompt={searchPrompt}
         setSearchPrompt={(value) => {

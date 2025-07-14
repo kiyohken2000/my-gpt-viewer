@@ -64,7 +64,6 @@ export default function DetaileView(props) {
       transparent={true}
     >
       <View style={{flex: 1, paddingHorizontal: calculateDesktopWidth({}) * 0.01, alignItems: 'center'}}>
-        <EroAds/>
         <ScrollView
           style={styles.container}
           showsVerticalScrollIndicator={false}
