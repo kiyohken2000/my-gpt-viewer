@@ -91,6 +91,13 @@ export default function Links() {
               <Text style={styles.linkText}>にもにゃんLINEスタンプ販売中</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.linkItemContainer}>
+            <TouchableOpacity
+              onPress={() => onLinkPress({url: storeLinks.guidanceImage})}
+            >
+              <Text style={styles.linkText}>画像生成の基本</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.itemContainer}>
           <Text style={styles.title}>感想・要望はXへどうぞ</Text>
