@@ -24,3 +24,4 @@ yarn-error.log*
 
 firebase.js
 apiKey.js
+_temp/*

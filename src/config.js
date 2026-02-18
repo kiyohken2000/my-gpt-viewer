@@ -11,7 +11,7 @@ const stripeLink = 'https://buy.stripe.com/6oE7vQ7VX0F14b6144'
 const stripeLinkAdd = 'https://buy.stripe.com/9B67sN9bt6Nv5yQbZbaVa01'
 
 const basename = ''
-const version = '1.0.33'
+const version = '1.0.34'
 const isDevMode = false
 
 const storeLinks = {
