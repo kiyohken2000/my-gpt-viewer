@@ -1,0 +1,6 @@
+name = "gachiai-keepalive"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[triggers]
+crons = ["0 */6 * * *"]  # 6時間ごと (UTC: 0時, 6時, 12時, 18時)
