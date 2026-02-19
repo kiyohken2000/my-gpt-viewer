@@ -48,12 +48,27 @@ function getRandomEndpoint() {
   return zeroGPUUrls[Math.floor(Math.random() * zeroGPUUrls.length)];
 }
 
+async function generateTags() {
+  const imageUrl = 'https://i.ibb.co/MLX7X3k/bce72e779dbd.png';
+  try {
+    const response = await fetch('https://mygpt-api-omc3n2et7a-uc.a.run.app', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: imageUrl }),
+    });
+    console.log(`[OK] generateTags: ${response.status}`);
+  } catch (error) {
+    console.error(`[ERROR] generateTags: ${error.message}`);
+  }
+}
+
 export default {
   async scheduled() {
     console.log('Keep-alive job started');
 
-    const results = await Promise.all(
-      enabledModels.map(async (model) => {
+    const results = await Promise.all([
+      generateTags(),
+      ...enabledModels.map(async (model) => {
         const endpoint = getRandomEndpoint();
         try {
           const response = await fetch(endpoint, {
@@ -74,7 +89,7 @@ export default {
           return { model: model.modelName, error: error.message };
         }
       })
-    );
+    ]);
 
     console.log(`Keep-alive job completed: ${results.length} requests`);
   },

@@ -1,48 +1,66 @@
-# React Native Web Boilerplate
+# ガチ有能AI助手 画像ビューア
 
-## Screens
+スマホアプリ「ガチ有能AI助手」で生成したAI画像をWebで閲覧・管理するビューア。
 
-<img src='https://github.com/kiyohken2000/react-native-web-boilerplate/blob/main/__DELELE_ME__/img1.jpg' width='80%'>
+## 技術スタック
 
-## Libraries
+- **フレームワーク**: React + React Native Web
+- **バックエンド**: Firebase (Firestore / Storage)
+- **検索**: Algolia
+- **決済**: Stripe
+- **ホスティング**: Cloudflare Pages
+- **定期実行**: Cloudflare Workers (Cron Triggers)
 
-- react
-- react-router-dom
-- axios
-- react-native
-- react-native-web
-- moment
+## セットアップ
 
-## Requirements
-
-- Node 16
-- Yarn 1.22.x
-
-## How to use
-
-### 1. Install
-
-Download zip or click "Use this template"
-
-```
+```bash
 yarn install
 ```
 
-### 2. Run
+## 開発
 
-```
+```bash
 yarn start
 ```
 
-## NOTES
+## デプロイ
 
-### Deploying app to the subfolder on server
+### フロントエンド (Cloudflare Pages)
 
-Adding publicPath to React Router's basename prop.
+```bash
+# ビルド → デプロイ
+yarn deploy:prod
 
-**src\config.js**
+# デプロイのみ
+yarn deploy
+```
 
-```javascript
-// e.g. basename='/path/to/subfolder/'
-const basename = ''
+### Cloudflare Workers (keep-alive)
+
+```bash
+yarn deploy:workers
+```
+
+## Cloudflare Workers
+
+`workers/keepalive/` にCloud Run APIのkeep-alive Workerがあります。
+
+6時間ごとに以下を実行します：
+- `generateTags` APIへのリクエスト
+- 有効な画像生成モデル（19件）へのウォームアップリクエスト
+
+### Workerのローカルテスト
+
+```bash
+cd workers/keepalive
+npx wrangler dev --test-scheduled
+# 別ターミナルで
+curl "http://localhost:8787/__scheduled?cron=0+*/6+*+*+*"
+```
+
+### Workerのデプロイ
+
+```bash
+cd workers/keepalive
+npx wrangler deploy
 ```
