@@ -1,0 +1,13 @@
+# セットアップ
+pip install -r scripts/requirements.txt
+
+# 全モデルにウォームアップ
+python scripts/warmup.py
+
+# リクエスト内容の確認のみ (送信しない)
+python scripts/warmup.py --dry-run
+
+# モデル名でフィルタして実行 (部分一致)
+python scripts/warmup.py --model pony
+python scripts/warmup.py --model retwpay
+python scripts/warmup.py --model votepurchase
