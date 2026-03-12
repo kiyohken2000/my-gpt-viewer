@@ -49,7 +49,7 @@ function getRandomEndpoint() {
 }
 
 async function generateTags() {
-  const imageUrl = 'https://i.ibb.co/MLX7X3k/bce72e779dbd.png';
+  const imageUrl = 'https://files.catbox.moe/06zi7m.png';
   try {
     const response = await fetch('https://mygpt-api-omc3n2et7a-uc.a.run.app', {
       method: 'POST',
